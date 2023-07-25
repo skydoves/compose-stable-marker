@@ -13,7 +13,7 @@
 </p><br>
 
 <p align="center">
-<img src="https://github.com/advocacies/snitcher/assets/24237865/be6f6112-2fa2-4df4-885b-522b0f951553" />
+<img src="https://github.com/skydoves/compose-stable-marker/assets/24237865/9ead142c-3a35-4027-932a-b1d4e1cd13c5" />
 </p>
 
 ## Agenda
