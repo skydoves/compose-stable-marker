@@ -10,7 +10,7 @@ plugins {
   alias(libs.plugins.dokka)
 }
 
-apply(from ="${rootDir}/scripts/publish-root.gradle")
+apply(from = "${rootDir}/scripts/publish-root.gradle")
 
 apiValidation {
   ignoredProjects.addAll(listOf("app"))
@@ -30,27 +30,29 @@ subprojects {
     )
   }
 
-  apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
-  configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-    kotlin {
-      target("**/*.kt")
-      targetExclude("$buildDir/**/*.kt")
-      ktlint().editorConfigOverride(
-        mapOf(
-          "indent_size" to "2",
-          "continuation_indent_size" to "2"
+  if (name != "compose-stable-marker") {
+    apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
+    configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+      kotlin {
+        target("**/*.kt")
+        targetExclude("$buildDir/**/*.kt")
+        ktlint().editorConfigOverride(
+          mapOf(
+            "indent_size" to "2",
+            "continuation_indent_size" to "2"
+          )
         )
-      )
-      licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
-      trimTrailingWhitespace()
-      endWithNewline()
-    }
-    format("kts") {
-      target("**/*.kts")
-      targetExclude("$buildDir/**/*.kts")
-      licenseHeaderFile(rootProject.file("spotless/copyright.kt"), "(^(?![\\/ ]\\*).*$)")
-      trimTrailingWhitespace()
-      endWithNewline()
+        licenseHeaderFile(rootProject.file("spotless/copyright.kt"))
+        trimTrailingWhitespace()
+        endWithNewline()
+      }
+      format("kts") {
+        target("**/*.kts")
+        targetExclude("$buildDir/**/*.kts")
+        licenseHeaderFile(rootProject.file("spotless/copyright.kt"), "(^(?![\\/ ]\\*).*$)")
+        trimTrailingWhitespace()
+        endWithNewline()
+      }
     }
   }
 }
