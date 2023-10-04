@@ -36,7 +36,13 @@ java {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+  kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
   kotlinOptions.freeCompilerArgs += listOf(
     "-Xexplicit-api=strict"
   )
+}
+
+tasks.withType(JavaCompile::class.java).configureEach {
+  this.targetCompatibility = JavaVersion.VERSION_11.toString()
+  this.sourceCompatibility = JavaVersion.VERSION_11.toString()
 }
