@@ -54,7 +54,7 @@ android {
   }
 
   kotlinOptions {
-    jvmTarget = libs.versions.jvmTarget.get().toString()
+    jvmTarget = libs.versions.jvmTarget.get()
   }
 
   lint {
