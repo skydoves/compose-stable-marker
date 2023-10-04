@@ -17,6 +17,7 @@ import com.github.skydoves.Configuration
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+  id("java-library")
   id("kotlin")
   id(libs.plugins.dokka.get().pluginId)
 }
@@ -28,6 +29,11 @@ rootProject.extra.apply {
 }
 
 apply(from ="${rootDir}/scripts/publish-module.gradle")
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
   kotlinOptions.freeCompilerArgs += listOf(
