@@ -15,13 +15,12 @@
  */
 @file:Suppress("UnstableApiUsage")
 
-import com.github.skydoves.Configuration
-
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id(libs.plugins.kotlin.multiplatform.get().pluginId)
   id(libs.plugins.dokka.get().pluginId)
   id(libs.plugins.nexus.plugin.get().pluginId)
+  java
 }
 
 kotlin {
