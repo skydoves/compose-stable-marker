@@ -13,33 +13,79 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("UnstableApiUsage")
+
 import com.github.skydoves.Configuration
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  id("java-library")
-  id("kotlin")
+  id(libs.plugins.kotlin.multiplatform.get().pluginId)
   id(libs.plugins.dokka.get().pluginId)
+  id(libs.plugins.nexus.plugin.get().pluginId)
 }
 
-rootProject.extra.apply {
-  set("PUBLISH_GROUP_ID", Configuration.artifactGroup)
-  set("PUBLISH_ARTIFACT_ID", "compose-stable-marker")
-  set("PUBLISH_VERSION", rootProject.extra.get("rootVersionName"))
-}
+kotlin {
+  jvm()
+  ios()
+  js(IR) {
+    browser()
+    binaries.executable()
+  }
+  iosSimulatorArm64()
+  macosArm64()
+  macosX64()
 
-apply(from ="${rootDir}/scripts/publish-module.gradle")
+  sourceSets {
+    val commonMain by getting
+    val commonTest by getting
+    val jvmMain by getting
+    val jvmTest by getting
+
+    val appleMain by creating {
+      dependsOn(commonMain)
+    }
+    val appleTest by creating {
+      dependsOn(commonTest)
+    }
+
+    val iosMain by getting {
+      dependsOn(appleMain)
+    }
+    val macosArm64Main by getting {
+      dependsOn(appleMain)
+    }
+    val macosX64Main by getting {
+      dependsOn(appleMain)
+    }
+    val iosSimulatorArm64Main by getting {
+      dependsOn(appleMain)
+    }
+
+    val iosTest by getting {
+      dependsOn(appleTest)
+    }
+    val iosSimulatorArm64Test by getting {
+      dependsOn(appleTest)
+    }
+    val macosX64Test by getting {
+      dependsOn(appleTest)
+    }
+    val macosArm64Test by getting {
+      dependsOn(appleTest)
+    }
+  }
+
+  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
+    kotlinOptions.freeCompilerArgs += listOf(
+      "-Xexplicit-api=strict"
+    )
+  }
+}
 
 java {
   sourceCompatibility = JavaVersion.VERSION_11
   targetCompatibility = JavaVersion.VERSION_11
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-  kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
-  kotlinOptions.freeCompilerArgs += listOf(
-    "-Xexplicit-api=strict"
-  )
 }
 
 tasks.withType(JavaCompile::class.java).configureEach {
