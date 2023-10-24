@@ -25,7 +25,12 @@ plugins {
 }
 
 kotlin {
-  jvm()
+  jvm {
+    compilations.all {
+      kotlinOptions.jvmTarget = "1.8"
+    }
+    withJava()
+  }
   ios()
   js(IR) {
     browser()
@@ -38,6 +43,7 @@ kotlin {
   sourceSets {
     val commonMain by getting
     val commonTest by getting
+
     val jvmMain by getting
     val jvmTest by getting
 
@@ -59,6 +65,20 @@ kotlin {
     }
     val iosSimulatorArm64Main by getting {
       dependsOn(appleMain)
+    }
+
+    val iosArm64Main by getting {
+      dependsOn(appleTest)
+    }
+    val iosArm64Test by getting {
+      dependsOn(appleTest)
+    }
+
+    val iosX64Main by getting {
+      dependsOn(appleTest)
+    }
+    val iosX64Test by getting {
+      dependsOn(appleTest)
     }
 
     val iosTest by getting {
@@ -84,11 +104,11 @@ kotlin {
 }
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = JavaVersion.VERSION_1_8
+  targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 tasks.withType(JavaCompile::class.java).configureEach {
-  this.targetCompatibility = JavaVersion.VERSION_11.toString()
-  this.sourceCompatibility = JavaVersion.VERSION_11.toString()
+  this.targetCompatibility = JavaVersion.VERSION_1_8.toString()
+  this.sourceCompatibility = JavaVersion.VERSION_1_8.toString()
 }
