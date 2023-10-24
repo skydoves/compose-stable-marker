@@ -25,9 +25,10 @@ plugins {
 }
 
 kotlin {
+  jvmToolchain(11)
   jvm {
     compilations.all {
-      kotlinOptions.jvmTarget = "1.8"
+      kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
     }
     withJava()
   }
@@ -104,11 +105,11 @@ kotlin {
 }
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_1_8
-  targetCompatibility = JavaVersion.VERSION_1_8
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
 }
 
 tasks.withType(JavaCompile::class.java).configureEach {
-  this.targetCompatibility = JavaVersion.VERSION_1_8.toString()
-  this.sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+  this.targetCompatibility = JavaVersion.VERSION_11.toString()
+  this.sourceCompatibility = JavaVersion.VERSION_11.toString()
 }
