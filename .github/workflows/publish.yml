@@ -22,9 +22,6 @@ jobs:
       - name: Release build
         run: ./gradlew assemble --scan
 
-      - name: Source jar and dokka
-        run: ./gradlew javadocJar --scan
-
       - name: Publish to MavenCentral
         run: ./gradlew publishReleasePublicationToSonatypeRepository --max-workers 1 closeAndReleaseSonatypeStagingRepository --scan
         env:
