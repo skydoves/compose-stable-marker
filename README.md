@@ -9,7 +9,7 @@
 </p><br>
 
 <p align="center">
-✒️ Compose stable markers were originated Compose runtime, which improves Compose performance by telling stable and skippable guarantees to the compose compiler from non-compose dependent modules.
+✒️ Compose stable markers were originated Compose runtime, which improves Compose performance by telling stable and skippable guarantees to the compose compiler from non-compose dependent modules. This library supports Kotlin Multiplatform.
 </p><br>
 
 <p align="center">
@@ -25,11 +25,23 @@ This library contains a few extracted Compose stable markers, such as [Stable](h
 
 ### Gradle
 
-Add the dependency below to your **module**'s `build.gradle.kts` file:
+Add the `compileOnly`` dependency below to your **module**'s `build.gradle.kts` file:
 
 ```gradle
 dependencies {
     compileOnly("com.github.skydoves:compose-stable-marker:1.0.2")
+}
+```
+
+For Kotlin Multiplatform, add the `compileOnly` dependency below to your **module**'s `build.gradle.kts` file:
+
+```gradle
+sourceSets {
+    val commonMain by getting {
+        dependencies {
+            compileOnly("com.github.skydoves:compose-stable-marker:$version")
+        }
+    }
 }
 ```
 
