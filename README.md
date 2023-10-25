@@ -29,7 +29,7 @@ Add the dependency below to your **module**'s `build.gradle.kts` file:
 
 ```gradle
 dependencies {
-    compileOnly("com.github.skydoves:compose-stable-marker:1.0.1")
+    compileOnly("com.github.skydoves:compose-stable-marker:1.0.2")
 }
 ```
 
