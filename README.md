@@ -25,7 +25,7 @@ This library contains a few extracted Compose stable markers, such as [Stable](h
 
 ### Gradle
 
-Add the `compileOnly`` dependency below to your **module**'s `build.gradle.kts` file:
+Add the `compileOnly` dependency below to your **module**'s `build.gradle.kts` file:
 
 ```gradle
 dependencies {
