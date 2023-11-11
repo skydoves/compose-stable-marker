@@ -25,6 +25,22 @@ plugins {
   id(libs.plugins.nexus.plugin.get().pluginId)
 }
 
+apply(from = "${rootDir}/scripts/publish-module.gradle.kts")
+
+mavenPublishing {
+  val artifactId = "compose-stable-marker"
+  coordinates(
+    Configurations.artifactGroup,
+    artifactId,
+    rootProject.extra.get("libVersion").toString()
+  )
+
+  pom {
+    name.set(artifactId)
+    description.set("Compose stable markers for KMP to tell stable/immutable guarantees to the compose compiler.")
+  }
+}
+
 kotlin {
   jvmToolchain(11)
 
