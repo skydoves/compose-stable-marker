@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.github.skydoves.Configuration
+import com.github.skydoves.Configurations
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -24,14 +24,14 @@ plugins {
 
 android {
   namespace = "com.github.skydoves.compose.stable.marker"
-  compileSdk = Configuration.compileSdk
+  compileSdk = Configurations.compileSdk
 
   defaultConfig {
     applicationId = "com.github.skydoves.compose.stable.marker"
-    minSdk = Configuration.minSdk
-    targetSdk = Configuration.targetSdk
-    versionCode = Configuration.versionCode
-    versionName = Configuration.versionName
+    minSdk = Configurations.minSdk
+    targetSdk = Configurations.targetSdk
+    versionCode = Configurations.versionCode
+    versionName = Configurations.versionName
   }
 
   buildFeatures {
