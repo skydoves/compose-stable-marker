@@ -26,6 +26,8 @@ plugins {
 }
 
 kotlin {
+  jvmToolchain(11)
+
   androidTarget { publishLibraryVariants("release") }
 
   jvm()
@@ -54,5 +56,10 @@ android {
   namespace = "com.skydoves.compose.stable.marker"
   defaultConfig {
     minSdk = Configurations.minSdk
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
   }
 }

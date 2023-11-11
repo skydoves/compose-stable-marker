@@ -1,0 +1,9 @@
+public abstract interface annotation class androidx/compose/runtime/Immutable : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class androidx/compose/runtime/Stable : java/lang/annotation/Annotation {
+}
+
+public abstract interface annotation class androidx/compose/runtime/StableMarker : java/lang/annotation/Annotation {
+}
+
