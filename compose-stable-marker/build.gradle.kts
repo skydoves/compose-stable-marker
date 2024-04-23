@@ -44,20 +44,27 @@ mavenPublishing {
 kotlin {
   jvmToolchain(11)
 
-  androidTarget { publishLibraryVariants("release") }
+  listOf(
+    iosX64(),
+    iosArm64(),
+    iosSimulatorArm64(),
+    macosArm64(),
+    macosX64(),
+  ).forEach {
+    it.binaries.framework {
+      baseName = "common"
+    }
+  }
 
-  jvm()
+  androidTarget {
+    publishLibraryVariants("release")
+  }
 
-  iosX64()
-  iosArm64()
-  iosSimulatorArm64()
-
-  macosX64()
-  macosArm64()
-
-  js(IR) {
-    browser()
-    binaries.executable()
+  jvm {
+    libs.versions.jvmTarget.get().toInt()
+    compilations.all {
+      kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
+    }
   }
 
   applyDefaultHierarchyTemplate()
@@ -78,4 +85,14 @@ android {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
   }
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType(JavaCompile::class.java).configureEach {
+  this.targetCompatibility = JavaVersion.VERSION_11.toString()
+  this.sourceCompatibility = JavaVersion.VERSION_11.toString()
 }
