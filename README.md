@@ -90,7 +90,7 @@ Let's assume that you have a normal class with the `Stable` annotation:
 
 ```kotlin
 // data module (pure Kotlin module)
-@Stable
+@Immutable
 public data class StableUser(
   public val name: String,
   public val devices: List<String>,
