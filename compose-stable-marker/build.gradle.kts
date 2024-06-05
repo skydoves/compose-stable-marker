@@ -136,11 +136,11 @@ fun Project.applyKotlinJsImplicitDependencyWorkaround() {
       dependsOn(named("jsProductionExecutableCompileSync"))
       dependsOn(named("jsTestTestDevelopmentExecutableCompileSync"))
 
-      dependsOn(getByPath(":coil:jsDevelopmentLibraryCompileSync"))
-      dependsOn(getByPath(":coil:jsDevelopmentExecutableCompileSync"))
-      dependsOn(getByPath(":coil:jsProductionLibraryCompileSync"))
-      dependsOn(getByPath(":coil:jsProductionExecutableCompileSync"))
-      dependsOn(getByPath(":coil:jsTestTestDevelopmentExecutableCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:jsDevelopmentLibraryCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:jsDevelopmentExecutableCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:jsProductionLibraryCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:jsProductionExecutableCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:jsTestTestDevelopmentExecutableCompileSync"))
     }
     named("jsBrowserProductionWebpack").configure(configureJs)
     named("jsBrowserProductionLibraryDistribution").configure(configureJs)
@@ -153,11 +153,11 @@ fun Project.applyKotlinJsImplicitDependencyWorkaround() {
       dependsOn(named("wasmJsProductionExecutableCompileSync"))
       dependsOn(named("wasmJsTestTestDevelopmentExecutableCompileSync"))
 
-      dependsOn(getByPath(":coil:wasmJsDevelopmentLibraryCompileSync"))
-      dependsOn(getByPath(":coil:wasmJsDevelopmentExecutableCompileSync"))
-      dependsOn(getByPath(":coil:wasmJsProductionLibraryCompileSync"))
-      dependsOn(getByPath(":coil:wasmJsProductionExecutableCompileSync"))
-      dependsOn(getByPath(":coil:wasmJsTestTestDevelopmentExecutableCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:wasmJsDevelopmentLibraryCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:wasmJsDevelopmentExecutableCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:wasmJsProductionLibraryCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:wasmJsProductionExecutableCompileSync"))
+      dependsOn(getByPath(":compose-stable-marker:wasmJsTestTestDevelopmentExecutableCompileSync"))
     }
     named("wasmJsBrowserProductionWebpack").configure(configureWasmJs)
     named("wasmJsBrowserProductionLibraryDistribution").configure(configureWasmJs)
