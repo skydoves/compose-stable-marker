@@ -43,7 +43,7 @@ mavenPublishing {
 }
 
 kotlin {
-  jvmToolchain(11)
+  jvmToolchain(17)
   androidTarget { publishLibraryVariants("release") }
   jvm("desktop")
   iosX64()
@@ -51,6 +51,19 @@ kotlin {
   iosSimulatorArm64()
   macosX64()
   macosArm64()
+
+  js {
+    browser()
+    nodejs {
+      testTask {
+        useMocha {
+          timeout = "60s"
+        }
+      }
+    }
+    binaries.executable()
+    binaries.library()
+  }
 
   @OptIn(ExperimentalWasmDsl::class)
   wasmJs {
@@ -90,6 +103,7 @@ kotlin {
             }
           }
           withJs()
+          withWasmJs()
         }
       }
     }
@@ -104,19 +118,4 @@ android {
   defaultConfig {
     minSdk = Configurations.minSdk
   }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
-  }
-}
-
-java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
-}
-
-tasks.withType(JavaCompile::class.java).configureEach {
-  this.targetCompatibility = JavaVersion.VERSION_11.toString()
-  this.sourceCompatibility = JavaVersion.VERSION_11.toString()
 }
