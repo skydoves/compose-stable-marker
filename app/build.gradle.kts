@@ -19,6 +19,7 @@ import com.github.skydoves.Configurations
 plugins {
   id(libs.plugins.android.application.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
+  id(libs.plugins.compose.compiler.get().pluginId)
   id(libs.plugins.spotless.get().pluginId)
 }
 
@@ -36,10 +37,6 @@ android {
 
   buildFeatures {
     compose = true
-  }
-
-  composeOptions {
-    kotlinCompilerExtensionVersion = libs.versions.androidxComposeCompiler.get()
   }
 
   packaging {
