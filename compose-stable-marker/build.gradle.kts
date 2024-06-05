@@ -43,7 +43,7 @@ mavenPublishing {
 }
 
 kotlin {
-  jvmToolchain(17)
+  jvmToolchain(11)
   androidTarget { publishLibraryVariants("release") }
   jvm("desktop")
   iosX64()
@@ -118,4 +118,19 @@ android {
   defaultConfig {
     minSdk = Configurations.minSdk
   }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+  }
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks.withType(JavaCompile::class.java).configureEach {
+  this.targetCompatibility = JavaVersion.VERSION_11.toString()
+  this.sourceCompatibility = JavaVersion.VERSION_11.toString()
 }
