@@ -102,8 +102,6 @@ kotlin {
               withMacosArm64()
             }
           }
-          withJs()
-          withWasmJs()
         }
       }
     }
