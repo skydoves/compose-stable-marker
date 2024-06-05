@@ -1,27 +1,18 @@
 [versions]
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 dokka = "1.9.10"
 jvmTarget = "11"
 nexusPlugin = "0.25.3"
 kotlinxCoroutines = "1.7.2"
 kotlinxTime = "0.4.0"
 kotlinBinaryCompatibility = "0.13.2"
-androidGradlePlugin = "8.3.2"
+androidGradlePlugin = "8.4.1"
 androidxActivity = "1.7.2"
 androidxMaterial = "1.9.0"
 androidxComposeBom = "2024.05.00"
-androidxComposeCompiler = "1.5.11"
 androidxComposeConstraintLayout = "1.0.1"
-androidxCore = "1.12.0"
-androidxTestRunner = "1.5.2"
-androidxTestRules = "1.5.0"
-androidxJunit = "1.1.5"
 androidxMacroBenchmark = "1.2.4"
-androidxProfileinstaller = "1.3.1"
-androidxUiAutomator = "2.3.0-alpha02"
 spotless = "6.20.0"
-junit = "4.13.2"
-androidx-test-ext-junit = "1.1.5"
 
 [libraries]
 kotlinx-time = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version.ref = "kotlinxTime" }
@@ -33,21 +24,11 @@ androidx-compose-foundation = { group = "androidx.compose.foundation", name = "f
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "androidxActivity" }
 androidx-compose-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidxComposeConstraintLayout" }
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidxCore" }
-androidx-profileinstaller = { group = "androidx.profileinstaller", name = "profileinstaller", version.ref = "androidxProfileinstaller" }
-androidx-benchmark-macro = { group = "androidx.benchmark", name = "benchmark-macro-junit4", version.ref = "androidxMacroBenchmark" }
-
-# Dependencies of the included build-logic
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-spotless-gradlePlugin = { group = "com.diffplug.spotless", name = "spotless-plugin-gradle", version.ref = "spotless" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
-android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }

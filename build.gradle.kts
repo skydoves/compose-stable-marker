@@ -6,6 +6,7 @@ plugins {
   alias(libs.plugins.baseline.profile) apply false
   alias(libs.plugins.kotlin.multiplatform) apply false
   alias(libs.plugins.spotless) apply false
+  alias(libs.plugins.compose.compiler) apply false
   alias(libs.plugins.kotlin.binary.compatibility)
   alias(libs.plugins.nexus.plugin)
   alias(libs.plugins.dokka)
