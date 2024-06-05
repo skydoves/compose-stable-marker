@@ -52,19 +52,6 @@ kotlin {
   macosX64()
   macosArm64()
 
-  js {
-    browser()
-    nodejs {
-      testTask {
-        useMocha {
-          timeout = "60s"
-        }
-      }
-    }
-    binaries.executable()
-    binaries.library()
-  }
-
   @OptIn(ExperimentalWasmDsl::class)
   wasmJs {
     browser {
