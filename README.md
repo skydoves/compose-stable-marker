@@ -74,7 +74,7 @@ private fun UnstableUserFun(unstableUser: UnstableUser) {
 }
 ```
 
-Following the [Compose Compiler Metrics](https://github.com/androidx/androidx/blob/androidx-main/compose/compiler/design/compiler-metrics.md), you'll get the result below:
+Following the [Compose Compiler Metrics](https://github.com/JetBrains/kotlin/blob/master/plugins/compose/design/compiler-metrics.md), you'll get the result below:
 
 ```
 restartable scheme("[androidx.compose.ui.UiComposable]") fun UnstableUserFun(
