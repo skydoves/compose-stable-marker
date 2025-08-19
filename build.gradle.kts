@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.android.library) apply false
@@ -18,16 +17,22 @@ apiValidation {
 
 subprojects {
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-    kotlinOptions.freeCompilerArgs += listOf(
-      "-P",
-      "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
-        project.buildDir.absolutePath + "/compose_metrics"
-    )
-    kotlinOptions.freeCompilerArgs += listOf(
-      "-P",
-      "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
-        project.buildDir.absolutePath + "/compose_metrics"
-    )
+    compilerOptions {
+      freeCompilerArgs.addAll(
+        listOf(
+          "-P",
+          "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" +
+            project.buildDir.absolutePath + "/compose_metrics"
+        )
+      )
+      freeCompilerArgs.addAll(
+        listOf(
+          "-P",
+          "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" +
+            project.buildDir.absolutePath + "/compose_metrics"
+        )
+      )
+    }
   }
 
   if (name != "compose-stable-marker") {
