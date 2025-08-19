@@ -42,6 +42,7 @@ mavenPublishing {
 }
 
 kotlin {
+  jvmToolchain(11)
   androidTarget { publishLibraryVariants("release") }
   jvm()
   iosX64()
