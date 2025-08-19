@@ -15,10 +15,10 @@
  */
 package com.github.skydoves.compose.stable.marker.data
 
-import kotlinx.datetime.Instant
+import java.util.Date
 
 public data class UnstableUser constructor(
   public val name: String,
   public val devices: List<String>,
-  public val createdAt: Instant,
+  public val createdAt: Date,
 )

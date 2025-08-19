@@ -16,11 +16,11 @@
 package com.github.skydoves.compose.stable.marker.data
 
 import androidx.compose.runtime.Immutable
-import kotlinx.datetime.Instant
+import java.util.Date
 
 @Immutable
 public data class ImmutableUser constructor(
   public val name: String,
   public val devices: List<String>,
-  public val createdAt: Instant,
+  public val createdAt: Date,
 )

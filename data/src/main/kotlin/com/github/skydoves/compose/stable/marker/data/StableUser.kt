@@ -16,11 +16,11 @@
 package com.github.skydoves.compose.stable.marker.data
 
 import androidx.compose.runtime.Stable
-import kotlinx.datetime.Instant
+import java.util.Date
 
 @Stable
 public data class StableUser constructor(
   public val name: String,
   public val devices: List<String>,
-  public val createdAt: Instant,
+  public val createdAt: Date,
 )

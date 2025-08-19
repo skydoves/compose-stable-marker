@@ -15,9 +15,11 @@
  */
 package com.github.skydoves.compose.stable.marker
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -25,28 +27,30 @@ import com.github.skydoves.compose.stable.marker.data.ImmutableUser
 import com.github.skydoves.compose.stable.marker.data.StableUser
 import com.github.skydoves.compose.stable.marker.data.UnstableUser
 import kotlinx.datetime.Instant
+import java.util.Date
 
 class MainActivity : ComponentActivity() {
 
+  @RequiresApi(Build.VERSION_CODES.O)
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     val stableUser = StableUser(
       name = "skydoves",
       devices = emptyList(),
-      createdAt = Instant.fromEpochSeconds(System.currentTimeMillis()),
+      createdAt = Date.from(java.time.Instant.now()),
     )
 
     val unstableUser = UnstableUser(
       name = "skydoves",
       devices = emptyList(),
-      createdAt = Instant.fromEpochSeconds(System.currentTimeMillis()),
+      createdAt = Date.from(java.time.Instant.now()),
     )
 
     val immutableUser = ImmutableUser(
       name = "skydoves",
       devices = emptyList(),
-      createdAt = Instant.fromEpochSeconds(System.currentTimeMillis()),
+      createdAt = Date.from(java.time.Instant.now()),
     )
 
     setContent {
