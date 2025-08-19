@@ -43,72 +43,17 @@ mavenPublishing {
 }
 
 kotlin {
-  jvmToolchain(11)
   androidTarget { publishLibraryVariants("release") }
-  jvm("desktop")
+  jvm()
   iosX64()
   iosArm64()
   iosSimulatorArm64()
   macosX64()
   macosArm64()
-
-  js {
-    browser()
-    nodejs {
-      testTask {
-        useMocha {
-          timeout = "60s"
-        }
-      }
-    }
-    binaries.executable()
-    binaries.library()
-  }
-
-  @OptIn(ExperimentalWasmDsl::class)
-  wasmJs {
-    browser {
-      testTask {
-        enabled = false
-      }
-    }
-    nodejs {
-      testTask {
-        enabled = false
-      }
-    }
-    binaries.executable()
-    binaries.library()
-  }
-
-  @Suppress("OPT_IN_USAGE")
-  applyHierarchyTemplate {
-    common {
-      group("jvm") {
-        withAndroidTarget()
-        withJvm()
-      }
-      group("skia") {
-        withJvm()
-        group("darwin") {
-          group("apple") {
-            group("ios") {
-              withIosX64()
-              withIosArm64()
-              withIosSimulatorArm64()
-            }
-            group("macos") {
-              withMacosX64()
-              withMacosArm64()
-            }
-          }
-        }
-      }
-    }
-  }
+  js()
+  wasmJs()
 
   explicitApi()
-  applyKotlinJsImplicitDependencyWorkaround()
 }
 
 android {
@@ -121,45 +66,6 @@ android {
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
-  }
-}
-
-// https://youtrack.jetbrains.com/issue/KT-56025
-fun Project.applyKotlinJsImplicitDependencyWorkaround() {
-  tasks {
-    val configureJs: Task.() -> Unit = {
-      dependsOn(named("jsDevelopmentLibraryCompileSync"))
-      dependsOn(named("jsDevelopmentExecutableCompileSync"))
-      dependsOn(named("jsProductionLibraryCompileSync"))
-      dependsOn(named("jsProductionExecutableCompileSync"))
-      dependsOn(named("jsTestTestDevelopmentExecutableCompileSync"))
-
-      dependsOn(getByPath(":compose-stable-marker:jsDevelopmentLibraryCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:jsDevelopmentExecutableCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:jsProductionLibraryCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:jsProductionExecutableCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:jsTestTestDevelopmentExecutableCompileSync"))
-    }
-    named("jsBrowserProductionWebpack").configure(configureJs)
-    named("jsBrowserProductionLibraryDistribution").configure(configureJs)
-    named("jsNodeProductionLibraryDistribution").configure(configureJs)
-
-    val configureWasmJs: Task.() -> Unit = {
-      dependsOn(named("wasmJsDevelopmentLibraryCompileSync"))
-      dependsOn(named("wasmJsDevelopmentExecutableCompileSync"))
-      dependsOn(named("wasmJsProductionLibraryCompileSync"))
-      dependsOn(named("wasmJsProductionExecutableCompileSync"))
-      dependsOn(named("wasmJsTestTestDevelopmentExecutableCompileSync"))
-
-      dependsOn(getByPath(":compose-stable-marker:wasmJsDevelopmentLibraryCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:wasmJsDevelopmentExecutableCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:wasmJsProductionLibraryCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:wasmJsProductionExecutableCompileSync"))
-      dependsOn(getByPath(":compose-stable-marker:wasmJsTestTestDevelopmentExecutableCompileSync"))
-    }
-    named("wasmJsBrowserProductionWebpack").configure(configureWasmJs)
-    named("wasmJsBrowserProductionLibraryDistribution").configure(configureWasmJs)
-    named("wasmJsNodeProductionLibraryDistribution").configure(configureWasmJs)
   }
 }
 
