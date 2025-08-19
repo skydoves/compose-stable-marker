@@ -18,7 +18,6 @@
 import com.github.skydoves.Configurations
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.multiplatform.get().pluginId)

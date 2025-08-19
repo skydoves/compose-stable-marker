@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id("kotlin")
   id(libs.plugins.dokka.get().pluginId)
