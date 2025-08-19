@@ -49,7 +49,18 @@ kotlin {
   iosSimulatorArm64()
   macosX64()
   macosArm64()
-  js()
+  js {
+    browser()
+    nodejs {
+      testTask {
+        useMocha {
+          timeout = "60s"
+        }
+      }
+    }
+    binaries.executable()
+    binaries.library()
+  }
   wasmJs()
 
   explicitApi()
